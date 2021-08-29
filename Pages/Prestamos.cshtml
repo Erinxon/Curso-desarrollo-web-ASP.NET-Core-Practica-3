@@ -1,0 +1,31 @@
+﻿@page
+@model Desarrollo_web_ASP.NET_Core_Practica_3.Pages.PrestamosModel
+@{
+   ViewData["Title"] = "Préstamos";
+}
+
+<div class="container">
+    <form method="get">
+        <div class="form-group">
+            <label>Monto</label>
+            <input type="number" class="form-control" name="monto" />
+        </div>
+        <div class="form-group">
+            <label>Cantidad de Cuotas</label>
+            <input type="number" class="form-control" name="cuotas" />
+        </div>
+        <div class="form-group">
+            <label>Porcentaje Anual</label>
+            <input type="number" class="form-control" name="porcentaje"  />
+        </div>
+        <button type="submit" class="btn btn-primary">Calcular Cuota Mensual</button>
+    </form>
+    @if (@Model.cuotaMensual > 0)
+    {
+        <div class="row mt-4">
+            <div class="col-12">
+                <span class="badge badge-primary p-3">La cuota mensual a pagar es: @Model.cuotaMensual</span>            
+            </div>
+        </div>
+    }
+</div>

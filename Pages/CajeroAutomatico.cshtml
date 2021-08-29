@@ -1,0 +1,71 @@
+﻿@page
+@model Desarrollo_web_ASP.NET_Core_Practica_3.Pages.CajeroAutomaticoModel
+@{
+    ViewData["Title"] = "Cajero Automático";
+}
+
+
+<div class="container">
+   <h3 class="text-center">Cajero automatico</h3>
+    <form method="get">
+      <div class="form-group">
+        <label>Monto a retirar</label>
+        <input type="number" class="form-control" name="monto"  placeholder="Monto">
+      </div>
+      <div class="form-group">
+        <label>Selecione el banco</label>
+        <select class="form-control" name="banco">
+                @foreach(var banco in Model.cajero.bancos)
+                {
+                     <option value=@banco.NombreBanco>@banco.NombreBanco</option>
+                } 
+         </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Retirar</button>    
+    </form>
+
+    @if (Model.errorMessage.IsError)
+    {
+        <div class="alert alert-danger mt-3" role="alert">
+            @Model.errorMessage.Message
+        </div>
+    }
+    @if(Model.billetes != null)
+    {
+        <div class="row">
+        @foreach(var billete in Model.billetes)
+        {
+            if(billete.NumeroBillete == 1000)
+            {
+                <div class="col-lg-12 mt-2">
+                    @for(int i =0; i < billete.Cantidad;i++)
+                    {               
+                       <img class="img-fluid" width="200" height="100" src="https://cdn.bancentral.gov.do/documents/billetes-y-monedas/images/1000_a.jpg"  />               
+                    }
+                </div>
+            }
+            if(billete.NumeroBillete == 500)
+            {           
+                <div class="col-lg-12 mt-2">
+                   @for(int i =0; i < billete.Cantidad;i++)
+                    {
+                      <img class="img-fluid"  width="200" height="100" src="https://cdn.bancentral.gov.do/documents/billetes-y-monedas/images/500_a.jpg" />
+                    }
+                </div>
+            }
+            if(billete.NumeroBillete == 100)
+            {
+                <div class="col-lg-12 mt-2">
+                   @for(int i =0; i < billete.Cantidad;i++)
+                    {
+                      <img class="img-fluid"  width="200" height="100" src="https://cdn.bancentral.gov.do/documents/billetes-y-monedas/images/100_a.jpg" />
+                    }
+                </div>
+            }
+                  
+        } 
+        </div>
+              
+    }
+  
+</div>
